@@ -1,0 +1,303 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    height: 100vh;
+}
+
+body {
+    width: 100vw;
+    height: 100%;
+    background-color: #1a2a33;
+    overflow-x: hidden;
+    position: relative;
+}
+
+#second-page {
+    display: none;
+    height: 100vh;
+}
+
+header {
+    width: 329px;
+    margin: 0px auto 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+}
+
+.butt-restart {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #A8BFC9;
+    box-shadow: inset 0px -4px 0px #6B8997;
+    cursor: pointer;
+}
+
+.butt-restart:hover {
+    opacity: 0.5;
+}
+
+.logo-img {
+    height: 31.74px;
+}
+
+.div-turn {
+    width: 96px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #1F3641;
+    box-shadow: inset 0px -4px 0px #10212A;
+    position: relative;
+    margin-left: 46px;
+    margin-right: 74px;
+}
+
+.icon-x {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 10px;
+    bottom: 14px;
+    left: 15px;
+    
+}
+
+.icon-o {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 10px;
+    left: 15px;
+    display: none;
+}
+
+.p-turn {
+    position: absolute;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    color: #A8BFC9;
+    top: 9px;
+    right: 15px;
+
+}
+
+.div-game {
+    width: 328px;
+    margin: 64px auto 0px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.butt-game {
+    width: 96px;
+    height: 96px;
+    border-radius: 10px;
+    background-color: #1F3641;
+    box-shadow: inset 0px -8px 0px #10212A;
+    border: none;
+    position: relative;
+    cursor: pointer;
+}
+
+.icon-game-x {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 24px;
+    left: 28px;
+    display: none;
+}
+
+.icon-game-x-black {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 24px;
+    left: 28px;
+    display: none;
+}
+
+.icon-game-o {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 24px;
+    left: 28px;
+    display: none;
+}
+
+.icon-game-o-black {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 24px;
+    left: 28px;
+    display: none;
+}
+
+.div-bott {
+    width: 96px;
+    height: 52px;
+    border-radius: 10px;
+    background-color: #31C3BD;
+    padding-top: 12px;
+}
+
+.p-bott {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: #1A2A33;
+    text-align: center;
+}
+
+
+.p-score {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    color: #1A2A33;
+    text-align: center;
+}
+
+.p-score {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    color: #1A2A33;
+    text-align: center;
+}
+
+.div-bott-midd {
+    width: 96px;
+    height: 52px;
+    border-radius: 10px;
+    background-color: #A8BFC9;
+    padding-top: 12px;
+
+}
+
+.div-bott-yellow {
+    width: 96px;
+    height: 52px;
+    border-radius: 10px;
+    background-color: #F2B137;
+    padding-top: 12px;
+}
+
+.front-div {
+    width: 100%;
+    height: 188px;
+    background-color: #1F3641;
+    position: absolute;
+    top: 195px;
+    padding-top: 40px;  
+    display: none;
+}
+
+.p-lost {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    color: #A8BFC9;
+    text-align: center;
+
+}
+
+.div-round {
+    width: 279px;
+    margin: 16px auto 0px;
+    display: flex;
+    gap: 8px;
+}
+
+.img-icon-o {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    display: none;
+}
+
+.img-icon-x {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+}
+
+.p-take {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    color: #31C3BD;
+    letter-spacing: 1.3px;
+    width: 241px;
+    margin-left: 38px;
+    
+}
+
+.p-tie {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 50px;
+    color: #A8BFC9;
+    text-align: center;
+    display: none;
+
+}
+
+.div-quit-next {
+    width: 238px;
+    margin: 24px auto 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.butt-quit {
+    width: 76px;
+    height: 52px;
+    border-radius: 10px;
+    background-color: #A8BFC9;
+    box-shadow: inset 0px -4px 0px #6B8997;
+    border: none;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1A2A33;
+    cursor: pointer;
+}
+
+.butt-next {
+    width: 146px;
+    height: 52px;
+    border-radius: 10px;
+    border: none;
+    background-color: #F2B137;
+    box-shadow: inset 0px -4px 0px #CC8B13;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1A2A33;
+    cursor: pointer;
+}
+
+/* .black-div {
+    height: 100vh;
+    background-color: black;
+    opacity: 0.3;
+} */

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tic-tac-toe</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="game.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="second-page" >
+        <header id="header">
+            <img src="./tic-tac-toe/assets/logo.svg" alt="" class="logo-img">
+            <div class="div-turn">
+                <img src="./tic-tac-toe/assets/icon-x-grey.svg" alt="" class="icon-x" id="x-turn">
+                <img src="./tic-tac-toe/assets/icon-o-grey.svg" alt="" class="icon-o" id="o-turn">
+                <p class="p-turn">TURN</p>
+            </div>
+            <button class="butt-restart">
+                <img src="./tic-tac-toe/assets/icon-restart.svg" alt="">
+            </button>       
+        </header>
+        
+        <div class="div-game">
+            <button class="butt-game">
+                <img src="./tic-tac-toe/assets/icon-x.svg" alt="" class="icon-game-x">
+                <img src="./tic-tac-toe/assets/icon-o.svg" alt="" class="icon-game-o">
+                <img src="./tic-tac-toe/assets/icon-x-black.svg" alt="" class="icon-game-x-black">
+                <img src="./tic-tac-toe/assets/icon-o-black.svg" alt="" class="icon-game-o-black">
+            </button>
+            <button class="butt-game">
+                <img src="./tic-tac-toe/assets/icon-x.svg" alt="" class="icon-game-x">
+                <img src="./tic-tac-toe/assets/icon-o.svg" alt="" class="icon-game-o">
+                <img src="./tic-tac-toe/assets/icon-x-black.svg" alt="" class="icon-game-x-black">
+                <img src="./tic-tac-toe/assets/icon-o-black.svg" alt="" class="icon-game-o-black">
+            </button>
+            <button class="butt-game">
+                <img src="./tic-tac-toe/assets/icon-x.svg" alt="" class="icon-game-x">
+                <img src="./tic-tac-toe/assets/icon-o.svg" alt="" class="icon-game-o">
+                <img src="./tic-tac-toe/assets/icon-x-black.svg" alt="" class="icon-game-x-black">
+                <img src="./tic-tac-toe/assets/icon-o-black.svg" alt="" class="icon-game-o-black">
+            </button>
+            <button class="butt-game">
+                <img src="./tic-tac-toe/assets/icon-x.svg" alt="" class="icon-game-x">
+                <img src="./tic-tac-toe/assets/icon-o.svg" alt="" class="icon-game-o">
+                <img src="./tic-tac-toe/assets/icon-x-black.svg" alt="" class="icon-game-x-black">
+                <img src="./tic-tac-toe/assets/icon-o-black.svg" alt="" class="icon-game-o-black">
+            </button>
+            <button class="butt-game">
+                <img src="./tic-tac-toe/assets/icon-x.svg" alt="" class="icon-game-x">
+                <img src="./tic-tac-toe/assets/icon-o.svg" alt="" class="icon-game-o">
+                <img src="./tic-tac-toe/assets/icon-x-black.svg" alt="" class="icon-game-x-black">
+                <img src="./tic-tac-toe/assets/icon-o-black.svg" alt="" class="icon-game-o-black">
+            </button>
+            <button class="butt-game">
+                <img src="./tic-tac-toe/assets/icon-x.svg" alt="" class="icon-game-x">
+                <img src="./tic-tac-toe/assets/icon-o.svg" alt="" class="icon-game-o">
+                <img src="./tic-tac-toe/assets/icon-x-black.svg" alt="" class="icon-game-x-black">
+                <img src="./tic-tac-toe/assets/icon-o-black.svg" alt="" class="icon-game-o-black">
+            </button>
+            <button class="butt-game">
+                <img src="./tic-tac-toe/assets/icon-x.svg" alt="" class="icon-game-x">
+                <img src="./tic-tac-toe/assets/icon-o.svg" alt="" class="icon-game-o">
+                <img src="./tic-tac-toe/assets/icon-x-black.svg" alt="" class="icon-game-x-black">
+                <img src="./tic-tac-toe/assets/icon-o-black.svg" alt="" class="icon-game-o-black">
+            </button>
+            <button class="butt-game">
+                <img src="./tic-tac-toe/assets/icon-x.svg" alt="" class="icon-game-x">
+                <img src="./tic-tac-toe/assets/icon-o.svg" alt="" class="icon-game-o">
+                <img src="./tic-tac-toe/assets/icon-x-black.svg" alt="" class="icon-game-x-black">
+                <img src="./tic-tac-toe/assets/icon-o-black.svg" alt="" class="icon-game-o-black">
+            </button>
+            <button class="butt-game">
+                <img src="./tic-tac-toe/assets/icon-x.svg" alt="" class="icon-game-x">
+                <img src="./tic-tac-toe/assets/icon-o.svg" alt="" class="icon-game-o">
+                <img src="./tic-tac-toe/assets/icon-x-black.svg" alt="" class="icon-game-x-black">
+                <img src="./tic-tac-toe/assets/icon-o-black.svg" alt="" class="icon-game-o-black">
+            </button>
+            <div class="div-bott">
+                <p class="p-bott" id="p-you">O (YOU)</p>
+                <p class="p-score" id="score_x">0</p>
+            </div>
+            <div class="div-bott-midd">
+                <p class="p-bott">TIES</p>
+                <p class="p-score">0</p>
+            </div>
+            <div class="div-bott-yellow">
+                <p class="p-bott" id="p-opp">X (CPU)</p>
+                <p class="p-score" id="score_o">0</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="first_page">
+        <div class="div-images" id="logo">
+            <img src="./tic-tac-toe/assets/logo.svg" alt="">
+        </div>
+
+        <div class="div-pick" id="pick">
+            <h1 class="h1-pick">PICK PLAYER 1’S MARK</h1>
+            <div class="div-pick-child">
+                <div class="div-circle-x" id="div-x">
+                    <img src="./tic-tac-toe/assets/icon-x-grey.svg" alt="" class="icon-style" id="icon-x">
+                    <img src="./tic-tac-toe/assets/icon-x-black.svg" alt="" class="icon-style-black" id="icon-x-black">
+                </div>
+                <div class="div-circle" id="div-o">
+                    <img src="./tic-tac-toe/assets/icon-o-black.svg" alt="" class="icon-style-circle" id="icon-o">
+                    <img src="./tic-tac-toe/assets/icon-o-grey.svg" alt="" class="icon-style-circle-grey" id="icon-o-grey">
+                </div>
+            </div>
+            <p class="p-pick">REMEMBER : X GOES FIRST</p>
+        </div>
+        
+            <button class="butt-yellow" id="new-cpu">
+                NEW GAME (VS CPU)
+            </button>
+        
+            <button class="butt-blue" id="new-pl2">
+                NEW GAME (VS PLAYER)
+            </button>
+    </div>
+
+    <div class="front-div" id="front-div">
+        <p class="p-lost" id="player-1">OH NO, YOU LOST…</p>
+        <div class="div-round" id="div-round">
+            <img src="./tic-tac-toe/assets/icon-o.svg" alt="" class="img-icon-o" id="img-icon-o">
+            <img src="./tic-tac-toe/assets/icon-x.svg" alt="" class="img-icon-x" id="img-icon-x">
+            <p class="p-take" id="p-take">TAKES THE ROUND</p>
+        </div>
+        <p class="p-tie" id="p-tie">ROUND TIED</p>
+        <div class="div-quit-next">
+            <button class="butt-quit">QUIT</button>
+        <button class="butt-next" id="next-round">NEXT ROUND</button>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
