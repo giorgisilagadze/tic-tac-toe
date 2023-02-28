@@ -30,9 +30,12 @@ const p_tie = document.getElementById("p-tie");
 const div_round = document.getElementById("div-round");
 let wins = 0;
 let wins_o = 0;
+let ties = 0;
 let check_tie = false;
 let check_tie_o = false;
 const next_round = document.getElementById("next-round");
+let score_ties = document.getElementById("ties");
+const quit = document.getElementById("quit");
 
 div_x.addEventListener("click", () => {
     div_x.style.background = "#A8BFC9";
@@ -46,12 +49,14 @@ div_x.addEventListener("click", () => {
         first_page.style.display = "none";
         p_you.innerText = "X (YOU)";
         p_opp.innerText = "O (CPU)";
+        vs_cpu_me_x();
     })
     new_pl2.addEventListener("click", () => {
         second_page.style.display = "block";
         first_page.style.display = "none";
         p_you.innerText = "X (P1)";
-        p_opp.innerText = "O (P2)"
+        p_opp.innerText = "O (P2)";
+        game_time();
     })
     
 })
@@ -72,34 +77,65 @@ div_o.addEventListener("click", () => {
     new_pl2.addEventListener("click", () => {
         second_page.style.display = "block";
         first_page.style.display = "none";
-        p_you.innerText = "O (P1)";
-        p_opp.innerText = "X (P2)"
+        p_you.innerText = "X (P2)";
+        p_opp.innerText = "O (P1)";
+        game_time_for_o();
+                
     })
 })
 
 
-for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('click', () => {
-            if (count % 2 == 0 && game_state[i] === undefined) {
-                icon_game_x[i].style.display = "block";
-                game_state[i] = "x";
-                count += 1;
-                check_win_x();
-                x_turn.style.display = "block";
-                o_turn.style.display = "none";          
-            } else if (count % 2 == 1 && game_state[i] === undefined) {
-                icon_game_o[i].style.display = "block";
-                game_state[i] = "o"; 
-                count += 1;
-                check_win_o(); 
-                x_turn.style.display = "none";
-                o_turn.style.display = "block";              
-            }
-            tie_check();
-    })
-
-
+function game_time(){
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', () => {
+                if (count % 2 == 0 && game_state[i] === undefined) {
+                    icon_game_x[i].style.display = "block";
+                    game_state[i] = "x";
+                    count += 1;
+                    check_win_x();
+                    x_turn.style.display = "block";
+                    o_turn.style.display = "none";          
+                } else if (count % 2 == 1 && game_state[i] === undefined) {
+                    icon_game_o[i].style.display = "block";
+                    game_state[i] = "o"; 
+                    count += 1;
+                    check_win_o(); 
+                    x_turn.style.display = "none";
+                    o_turn.style.display = "block";              
+                }
+                tie_check();
+        })
+    
+    
+    }
 }
+
+
+function game_time_for_o() {
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', () => {
+                if (count % 2 == 0 && game_state[i] === undefined) {
+                    icon_game_x[i].style.display = "block";
+                    game_state[i] = "x";
+                    count += 1;
+                    check_win_x_for_o();
+                    x_turn.style.display = "block";
+                    o_turn.style.display = "none";          
+                } else if (count % 2 == 1 && game_state[i] === undefined) {
+                    icon_game_o[i].style.display = "block";
+                    game_state[i] = "o"; 
+                    count += 1;
+                    check_win_o_for_o(); 
+                    x_turn.style.display = "none";
+                    o_turn.style.display = "block";              
+                }
+                tie_check();
+        })
+    
+    
+    }
+}
+
 
 
 function check_win_x() {
@@ -114,9 +150,18 @@ function check_win_x() {
         player_1.innerText = "PLAYER 1 WINS!";
         second_page.style.background = "black";
         second_page.style.opacity = "0.3"; 
+        img_icon_x.style.display = "block";
+        img_icon_o.style.display = "none";
+        p_take.style.color = "#31C3BD";
         wins += 1;
         score_x.innerText = wins;
         check_tie = true;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }else if ((game_state[3] == "x" && game_state[4] == "x" && game_state[5] == "x")) {
         buttons[3].style.background = "#31c3bd";
         buttons[4].style.background = "#31c3bd";
@@ -128,9 +173,18 @@ function check_win_x() {
         player_1.innerText = "PLAYER 1 WINS!";
         second_page.style.background = "black";
         second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "block";
+        img_icon_o.style.display = "none";
+        p_take.style.color = "#31C3BD";
         wins += 1;
         score_x.innerText = wins;
         check_tie = true;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }else if ((game_state[6] == "x" && game_state[7] == "x" && game_state[8] == "x")) {
         buttons[6].style.background = "#31c3bd";
         buttons[7].style.background = "#31c3bd";
@@ -142,9 +196,18 @@ function check_win_x() {
         player_1.innerText = "PLAYER 1 WINS!";
         second_page.style.background = "black";
         second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "block";
+        img_icon_o.style.display = "none";
+        p_take.style.color = "#31C3BD";
         wins += 1;
         score_x.innerText = wins;
         check_tie = true;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }else if ((game_state[0] == "x" && game_state[3] == "x" && game_state[6] == "x")) {
         buttons[0].style.background = "#31c3bd";
         buttons[3].style.background = "#31c3bd";
@@ -156,9 +219,18 @@ function check_win_x() {
         player_1.innerText = "PLAYER 1 WINS!";
         second_page.style.background = "black";
         second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "block";
+        img_icon_o.style.display = "none";
+        p_take.style.color = "#31C3BD";
         wins += 1;
         score_x.innerText = wins;
         check_tie = true;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }else if ((game_state[1] == "x" && game_state[4] == "x" && game_state[7] == "x")) {
         buttons[1].style.background = "#31c3bd";
         buttons[4].style.background = "#31c3bd";
@@ -170,9 +242,18 @@ function check_win_x() {
         player_1.innerText = "PLAYER 1 WINS!";
         second_page.style.background = "black";
         second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "block";
+        img_icon_o.style.display = "none";
+        p_take.style.color = "#31C3BD";
         wins += 1;
         score_x.innerText = wins;
         check_tie = true;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }else if ((game_state[2] == "x" && game_state[5] == "x" && game_state[8] == "x")) {
         buttons[2].style.background = "#31c3bd";
         buttons[5].style.background = "#31c3bd";
@@ -184,9 +265,18 @@ function check_win_x() {
         player_1.innerText = "PLAYER 1 WINS!";
         second_page.style.background = "black";
         second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "block";
+        img_icon_o.style.display = "none";
+        p_take.style.color = "#31C3BD";
         wins += 1;
         score_x.innerText = wins;
         check_tie = true;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }else if ((game_state[0] == "x" && game_state[4] == "x" && game_state[8] == "x")) {
         buttons[0].style.background = "#31c3bd";
         buttons[4].style.background = "#31c3bd";
@@ -198,9 +288,18 @@ function check_win_x() {
         player_1.innerText = "PLAYER 1 WINS!";
         second_page.style.background = "black";
         second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "block";
+        img_icon_o.style.display = "none";
+        p_take.style.color = "#31C3BD";
         wins += 1;
         score_x.innerText = wins;
         check_tie = true;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }else if ((game_state[2] == "x" && game_state[4] == "x" && game_state[6] == "x")) {
         buttons[2].style.background = "#31c3bd";
         buttons[4].style.background = "#31c3bd";
@@ -212,9 +311,18 @@ function check_win_x() {
         player_1.innerText = "PLAYER 1 WINS!";
         second_page.style.background = "black";
         second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "block";
+        img_icon_o.style.display = "none";
+        p_take.style.color = "#31C3BD";
         wins += 1;
         score_x.innerText = wins;
         check_tie = true;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }
 
 }
@@ -237,6 +345,12 @@ function check_win_o() {
         check_tie_o = true;
         wins_o += 1;
         score_o.innerText = wins_o;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }else if ((game_state[3] == "o" && game_state[4] == "o" && game_state[5] == "o")) {
         buttons[3].style.background = "#F2B137";
         buttons[4].style.background = "#F2B137";
@@ -254,6 +368,12 @@ function check_win_o() {
         check_tie_o = true;
         wins_o += 1;
         score_o.innerText = wins_o;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }else if ((game_state[6] == "o" && game_state[7] == "o" && game_state[8] == "o")) {
         buttons[6].style.background = "#F2B137";
         buttons[7].style.background = "#F2B137";
@@ -271,6 +391,12 @@ function check_win_o() {
         check_tie_o = true;
         wins_o += 1;
         score_o.innerText = wins_o;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }else if ((game_state[0] == "o" && game_state[3] == "o" && game_state[6] == "o")) {
         buttons[0].style.background = "#F2B137";
         buttons[3].style.background = "#F2B137";
@@ -288,6 +414,12 @@ function check_win_o() {
         check_tie_o = true;
         wins_o += 1;
         score_o.innerText = wins_o;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }else if ((game_state[1] == "o" && game_state[4] == "o" && game_state[7] == "o")) {
         buttons[1].style.background = "#F2B137";
         buttons[4].style.background = "#F2B137";
@@ -305,6 +437,12 @@ function check_win_o() {
         check_tie_o = true;
         wins_o += 1;
         score_o.innerText = wins_o;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }else if ((game_state[2] == "o" && game_state[5] == "o" && game_state[8] == "o")) {
         buttons[2].style.background = "#F2B137";
         buttons[5].style.background = "#F2B137";
@@ -322,6 +460,12 @@ function check_win_o() {
         check_tie_o = true;
         wins_o += 1;
         score_o.innerText = wins_o;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }else if ((game_state[0] == "o" && game_state[4] == "o" && game_state[8] == "o")) {
         buttons[0].style.background = "#F2B137";
         buttons[4].style.background = "#F2B137";
@@ -339,6 +483,12 @@ function check_win_o() {
         check_tie_o = true;
         wins_o += 1;
         score_o.innerText = wins_o;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }else if ((game_state[2] == "o" && game_state[4] == "o" && game_state[6] == "o")) {
         buttons[2].style.background = "#F2B137";
         buttons[4].style.background = "#F2B137";
@@ -356,20 +506,286 @@ function check_win_o() {
         check_tie_o = true;
         wins_o += 1;
         score_o.innerText = wins_o;
+        player_1.style.display = "block";
+        div_round.style.display = "block";
+        p_tie.style.display = "none";
+        front_div.style.paddingTop = "40px";
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }
 
 }
 
+function check_win_x_for_o() {
+    if ((game_state[0] == "x" && game_state[1] == "x" && game_state[2] == "x")) {
+        buttons[0].style.background = "#31c3bd";
+        buttons[1].style.background = "#31c3bd";
+        buttons[2].style.background = "#31c3bd";
+        icon_game_x_black[0].style.display = "block";
+        icon_game_x_black[1].style.display = "block";
+        icon_game_x_black[2].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 2 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3"; 
+        wins += 1;
+        score_x.innerText = wins;
+        check_tie = true;
+    }else if ((game_state[3] == "x" && game_state[4] == "x" && game_state[5] == "x")) {
+        buttons[3].style.background = "#31c3bd";
+        buttons[4].style.background = "#31c3bd";
+        buttons[5].style.background = "#31c3bd";
+        icon_game_x_black[3].style.display = "block";
+        icon_game_x_black[4].style.display = "block";
+        icon_game_x_black[5].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 2 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        wins += 1;
+        score_x.innerText = wins;
+        check_tie = true;
+    }else if ((game_state[6] == "x" && game_state[7] == "x" && game_state[8] == "x")) {
+        buttons[6].style.background = "#31c3bd";
+        buttons[7].style.background = "#31c3bd";
+        buttons[8].style.background = "#31c3bd";
+        icon_game_x_black[6].style.display = "block";
+        icon_game_x_black[7].style.display = "block";
+        icon_game_x_black[8].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 2 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        wins += 1;
+        score_x.innerText = wins;
+        check_tie = true;
+    }else if ((game_state[0] == "x" && game_state[3] == "x" && game_state[6] == "x")) {
+        buttons[0].style.background = "#31c3bd";
+        buttons[3].style.background = "#31c3bd";
+        buttons[6].style.background = "#31c3bd";
+        icon_game_x_black[0].style.display = "block";
+        icon_game_x_black[3].style.display = "block";
+        icon_game_x_black[6].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 2 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        wins += 1;
+        score_x.innerText = wins;
+        check_tie = true;
+    }else if ((game_state[1] == "x" && game_state[4] == "x" && game_state[7] == "x")) {
+        buttons[1].style.background = "#31c3bd";
+        buttons[4].style.background = "#31c3bd";
+        buttons[7].style.background = "#31c3bd";
+        icon_game_x_black[1].style.display = "block";
+        icon_game_x_black[4].style.display = "block";
+        icon_game_x_black[7].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 2 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        wins += 1;
+        score_x.innerText = wins;
+        check_tie = true;
+    }else if ((game_state[2] == "x" && game_state[5] == "x" && game_state[8] == "x")) {
+        buttons[2].style.background = "#31c3bd";
+        buttons[5].style.background = "#31c3bd";
+        buttons[8].style.background = "#31c3bd";
+        icon_game_x_black[2].style.display = "block";
+        icon_game_x_black[5].style.display = "block";
+        icon_game_x_black[8].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 2 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        wins += 1;
+        score_x.innerText = wins;
+        check_tie = true;
+    }else if ((game_state[0] == "x" && game_state[4] == "x" && game_state[8] == "x")) {
+        buttons[0].style.background = "#31c3bd";
+        buttons[4].style.background = "#31c3bd";
+        buttons[8].style.background = "#31c3bd";
+        icon_game_x_black[0].style.display = "block";
+        icon_game_x_black[4].style.display = "block";
+        icon_game_x_black[8].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 2 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        wins += 1;
+        score_x.innerText = wins;
+        check_tie = true;
+    }else if ((game_state[2] == "x" && game_state[4] == "x" && game_state[6] == "x")) {
+        buttons[2].style.background = "#31c3bd";
+        buttons[4].style.background = "#31c3bd";
+        buttons[6].style.background = "#31c3bd";
+        icon_game_x_black[2].style.display = "block";
+        icon_game_x_black[4].style.display = "block";
+        icon_game_x_black[6].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 2 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        wins += 1;
+        score_x.innerText = wins;
+        check_tie = true;
+    }
+}
+
+function check_win_o_for_o() {
+    if ((game_state[0] == "o" && game_state[1] == "o" && game_state[2] == "o")) {
+        buttons[0].style.background = "#F2B137";
+        buttons[1].style.background = "#F2B137";
+        buttons[2].style.background = "#F2B137";
+        icon_game_o_black[0].style.display = "block";
+        icon_game_o_black[1].style.display = "block";
+        icon_game_o_black[2].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 1 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "none";
+        img_icon_o.style.display = "block";
+        p_take.style.color = "#F2B137";
+        check_tie_o = true;
+        wins_o += 1;
+        score_o.innerText = wins_o;
+    }else if ((game_state[3] == "o" && game_state[4] == "o" && game_state[5] == "o")) {
+        buttons[3].style.background = "#F2B137";
+        buttons[4].style.background = "#F2B137";
+        buttons[5].style.background = "#F2B137";
+        icon_game_o_black[3].style.display = "block";
+        icon_game_o_black[4].style.display = "block";
+        icon_game_o_black[5].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 1 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "none";
+        img_icon_o.style.display = "block";
+        p_take.style.color = "#F2B137";
+        check_tie_o = true;
+        wins_o += 1;
+        score_o.innerText = wins_o;
+    }else if ((game_state[6] == "o" && game_state[7] == "o" && game_state[8] == "o")) {
+        buttons[6].style.background = "#F2B137";
+        buttons[7].style.background = "#F2B137";
+        buttons[8].style.background = "#F2B137";
+        icon_game_o_black[6].style.display = "block";
+        icon_game_o_black[7].style.display = "block";
+        icon_game_o_black[8].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 1 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "none";
+        img_icon_o.style.display = "block";
+        p_take.style.color = "#F2B137";
+        check_tie_o = true;
+        wins_o += 1;
+        score_o.innerText = wins_o;
+    }else if ((game_state[0] == "o" && game_state[3] == "o" && game_state[6] == "o")) {
+        buttons[0].style.background = "#F2B137";
+        buttons[3].style.background = "#F2B137";
+        buttons[6].style.background = "#F2B137";
+        icon_game_o_black[0].style.display = "block";
+        icon_game_o_black[3].style.display = "block";
+        icon_game_o_black[6].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 1 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "none";
+        img_icon_o.style.display = "block";
+        p_take.style.color = "#F2B137";
+        check_tie_o = true;
+        wins_o += 1;
+        score_o.innerText = wins_o;
+    }else if ((game_state[1] == "o" && game_state[4] == "o" && game_state[7] == "o")) {
+        buttons[1].style.background = "#F2B137";
+        buttons[4].style.background = "#F2B137";
+        buttons[7].style.background = "#F2B137";
+        icon_game_o_black[1].style.display = "block";
+        icon_game_o_black[4].style.display = "block";
+        icon_game_o_black[7].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 1 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "none";
+        img_icon_o.style.display = "block";
+        p_take.style.color = "#F2B137";
+        check_tie_o = true;
+        wins_o += 1;
+        score_o.innerText = wins_o;
+    }else if ((game_state[2] == "o" && game_state[5] == "o" && game_state[8] == "o")) {
+        buttons[2].style.background = "#F2B137";
+        buttons[5].style.background = "#F2B137";
+        buttons[8].style.background = "#F2B137";
+        icon_game_o_black[2].style.display = "block";
+        icon_game_o_black[5].style.display = "block";
+        icon_game_o_black[8].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 1 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "none";
+        img_icon_o.style.display = "block";
+        p_take.style.color = "#F2B137";
+        check_tie_o = true;
+        wins_o += 1;
+        score_o.innerText = wins_o;
+    }else if ((game_state[0] == "o" && game_state[4] == "o" && game_state[8] == "o")) {
+        buttons[0].style.background = "#F2B137";
+        buttons[4].style.background = "#F2B137";
+        buttons[8].style.background = "#F2B137";
+        icon_game_o_black[0].style.display = "block";
+        icon_game_o_black[4].style.display = "block";
+        icon_game_o_black[8].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 1 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "none";
+        img_icon_o.style.display = "block";
+        p_take.style.color = "#F2B137";
+        check_tie_o = true;
+        wins_o += 1;
+        score_o.innerText = wins_o;
+    }else if ((game_state[2] == "o" && game_state[4] == "o" && game_state[6] == "o")) {
+        buttons[2].style.background = "#F2B137";
+        buttons[4].style.background = "#F2B137";
+        buttons[6].style.background = "#F2B137";
+        icon_game_o_black[2].style.display = "block";
+        icon_game_o_black[4].style.display = "block";
+        icon_game_o_black[6].style.display = "block";
+        front_div.style.display = "block";
+        player_1.innerText = "PLAYER 1 WINS!";
+        second_page.style.background = "black";
+        second_page.style.opacity = "0.3";
+        img_icon_x.style.display = "none";
+        img_icon_o.style.display = "block";
+        p_take.style.color = "#F2B137";
+        check_tie_o = true;
+        wins_o += 1;
+        score_o.innerText = wins_o;
+    }
+
+}
 
 function tie_check() {
     if(count == 9 && check_tie == false && check_tie_o == false) {
         second_page.style.background = "black";
         second_page.style.opacity = "0.3";
         front_div.style.display = "block";
-        front_div.style.paddingTop = "67px"
+        front_div.style.paddingTop = "67px";
         player_1.style.display = "none";
         div_round.style.display = "none";
         p_tie.style.display = "block";
+        ties += 1;
+        score_ties.innerText = ties;
+        game_state.length = 0;
+        free_positions = [0,1,2,3,4,5,6,7,8];
     }
 }
 
@@ -390,23 +806,86 @@ next_round.addEventListener("click", () => {
     }
 })
 
-// #1F3641
-// #31c3bd
-    // if ((game_state[0] === game_state[1]) && (game_state[0] === game_state[2])) {
-    //     buttons[0].style.background = "#31c3bd";
-    //     buttons[1].style.background = "#31c3bd";
-    //     buttons[2].style.background = "#31c3bd";
-    //     icon_game_x_black[0].style.display = "block";
-    //     icon_game_x_black[1].style.display = "block";
-    //     icon_game_x_black[2].style.display = "block";
-    // }
+quit.addEventListener("click", () => {
+    front_div.style.display = "none";
+    second_page.style.display = "none";
+    first_page.style.display = "block";
+    for(let i = 0; i < buttons.length; i++) {
+        icon_game_x[i].style.display = "none";
+        icon_game_o[i].style.display = "none";
+        icon_game_x_black[i].style.display = "none";
+        icon_game_o_black[i].style.display = "none";
+        buttons[i].style.background = "#1F3641";
+        second_page.style.background = "";
+        second_page.style.opacity = "1";
+        game_state[i] = undefined;
+        count = 0;
+        check_tie = false;
+        check_tie_o = false;
+    }
+})
 
 
-// tie change 
-// second_page.style.background = "black";
-// second_page.style.opacity = "0.3";
-// front_div.style.display = "block";
-// front_div.style.paddingTop = "67px"
-// player_1.style.display = "none";
-// div_round.style.display = "none";
-// p_tie.style.display = "block"
+function vs_cpu_me_x() {
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', () => {
+            icon_game_x[i].style.display = "block";
+            game_state[i] = "x";
+            x_turn.style.display = "block";
+            o_turn.style.display = "none";
+            let index_x = free_positions.indexOf(i);
+            console.log(index_x)
+            free_positions.splice(index_x, 1);
+            let random_position = free_positions[Math.floor(Math.random() * free_positions.length)];
+            let random = icon_game_o[random_position];
+            if(game_state[random_position] === undefined) {
+                game_state[random_position] = "o";
+                check_win_o();
+                random.style.display = "block";
+                let index_o = free_positions.indexOf(random_position);
+                free_positions.splice(index_o, 1);
+            }
+            console.log(game_state);
+            console.log(free_positions);
+            
+            check_win_x();      
+        tie_check();
+    })
+        }  
+    }
+
+/* 
+[0;1;2;3;4;5;6;7;8]
+*/
+let free_positions = [0,1,2,3,4,5,6,7,8];
+
+
+// function vs_cpu_me_x() {
+//     for (let i = 0; i < buttons.length; i++) {
+//         buttons[i].addEventListener('click', () => {
+//                 if (count % 2 == 0 && game_state[i] === undefined) {
+//                     icon_game_x[i].style.display = "block";
+//                     game_state[i] = "x";
+//                     count += 1;
+//                     check_win_x();
+//                     x_turn.style.display = "block";
+//                     o_turn.style.display = "none";
+//                     let random = icon_game_o[Math.floor(Math.random() * icon_game_o.length)];
+//                     random.style.display = "block";          
+//                 } else if (count % 2 == 1 && game_state[i] === undefined) {
+//                     game_state[i] = "o"; 
+//                     count += 1;
+//                     check_win_o(); 
+//                     x_turn.style.display = "none";
+//                     o_turn.style.display = "block"; 
+//                     console.log(random);
+                                 
+//                 }
+//                 tie_check();
+//         })
+    
+    
+//     }
+// }
+
+
